@@ -170,6 +170,9 @@
     <Compile Include="Traits\ICanGet.cs" />
     <Compile Include="Traits\ICanUpdate.cs" />
     <Compile Include="Transactions\IBatchItem.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\RepositoryDictionary.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
