@@ -7,6 +7,7 @@ namespace SharpRepository.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        void Add<T>(T entity) where T : class;
+        void AddRepository<T>() where T : class, new();
+        void Add<T>(T entity) where T : class, new();
     }
 }

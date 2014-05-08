@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Traits;
 using SharpRepository.Tests.TestObjects;
@@ -10,10 +10,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Traits
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ICanGetTraitTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void ICanGet_Exposes_Get_By_Id()
         {
             var repo = new ContactRepository();
@@ -26,7 +26,7 @@ namespace SharpRepository.Tests.Traits
             result.ContactTypeId.ShouldEqual(contact.ContactTypeId);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ICanGet_Exposes_GetAll()
         {
             var repo = new ContactRepository();
@@ -41,7 +41,7 @@ namespace SharpRepository.Tests.Traits
             result.Count().ShouldEqual(5);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ICanGet_Exposes_Get_With_Result()
         {
             var repo = new ContactRepository();

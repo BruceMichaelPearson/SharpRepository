@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Tests.TestObjects;
@@ -6,16 +6,16 @@ using Should;
 
 namespace SharpRepository.Tests.Conventions
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class RepositoryConventionTests
     {
-        [Test]
+        [Test][TestMethod]
         public void Default_PrimaryKeySuffix_Is_Id()
         {
             DefaultRepositoryConventions.PrimaryKeySuffix.ShouldEqual("Id");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void RepositoryConventions_Uses_Default_PrimaryKeySuffix()
         {
             DefaultRepositoryConventions.PrimaryKeySuffix = "Key";
@@ -25,13 +25,13 @@ namespace SharpRepository.Tests.Conventions
             DefaultRepositoryConventions.PrimaryKeySuffix = "Id";
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Default_PrimaryKeyName()
         {
             DefaultRepositoryConventions.GetPrimaryKeyName(typeof (Contact)).ShouldEqual("ContactId");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Change_PrimaryKeyName()
         {
             var orig = DefaultRepositoryConventions.GetPrimaryKeyName;
@@ -43,14 +43,14 @@ namespace SharpRepository.Tests.Conventions
             DefaultRepositoryConventions.GetPrimaryKeyName = orig;
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Default_CachePrefix()
         {
             var repos = new InMemoryRepository.InMemoryRepository<Contact>(new StandardCachingStrategy<Contact, int>());
             repos.CachingStrategy.FullCachePrefix.ShouldStartWith(DefaultRepositoryConventions.CachePrefix);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Change_CachePrefix()
         {
             const string newPrefix = "TestPrefix123";

@@ -1,14 +1,14 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.AzureTableRepository;
 using Should;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class AzureTableSpikes
     {
-//        [Test]
+//        [Test][TestMethod]
 //        public void TestAzureTableGet()
 //        {
 //            var repo = new AzureTableRepository<PoisonMessage>("UseDevelopmentStorage=true");

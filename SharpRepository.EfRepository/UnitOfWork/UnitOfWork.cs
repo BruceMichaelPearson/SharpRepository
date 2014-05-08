@@ -13,6 +13,9 @@ namespace SharpRepository.EfRepository.UnitOfWork
     public class UnitOfWork : UnitOfWorkBase
     {
         private DbContext BaseContext;
+        private UnitOfWork()
+        {
+        }
         public UnitOfWork(DbContext context)
         {
             BaseContext = context;

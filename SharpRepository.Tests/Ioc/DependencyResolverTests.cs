@@ -1,20 +1,20 @@
 ﻿using System;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Ioc;
 
 namespace SharpRepository.Tests.Ioc
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class DependencyResolverTests
     {
-        [Test]
+        [Test][TestMethod]
         public void No_Ioc_Configuration_Should_Throw_Exception()
         {
             try
             {
                 new TestDependencyResolver().Resolve<ISomeFakeInterface>();
 
-                Assert.Fail(); // exception was not throws
+                NUnit.Framework.Assert.Fail(); // exception was not throws
             }
             catch (RepositoryDependencyResolverException)
             {
@@ -22,7 +22,7 @@ namespace SharpRepository.Tests.Ioc
             }
             catch (Exception)
             {
-                Assert.Fail();
+                NUnit.Framework.Assert.Fail();
             }
             
         }

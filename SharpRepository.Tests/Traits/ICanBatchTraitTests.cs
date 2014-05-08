@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Traits;
 using SharpRepository.Tests.TestObjects;
@@ -9,10 +9,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Traits
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ICanBatchTraitTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void ICanBatch_Exposes_BeginBatch()
         {
             var repo = new ContactRepository();

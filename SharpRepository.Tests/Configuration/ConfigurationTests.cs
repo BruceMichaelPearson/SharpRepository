@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.EfRepository;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Repository.Configuration;
@@ -11,10 +11,10 @@ namespace SharpRepository.Tests.Configuration
 {
     
 
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ConfigurationTests
     {
-        [Test]
+        [Test][TestMethod]
         public void InMemoryConfigurationNoParametersNoKeyTypes()
         {
             var repos = RepositoryFactory.GetInstance<Contact>();
@@ -25,7 +25,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void InMemoryConfigurationNoParameters()
         {
             var repos = RepositoryFactory.GetInstance<Contact, string>();
@@ -36,7 +36,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadConfigurationRepositoryByName()
         {
             var repos = RepositoryFactory.GetInstance<Contact, string>("efRepos");
@@ -48,7 +48,7 @@ namespace SharpRepository.Tests.Configuration
 
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadConfigurationRepositoryBySectionName()
         {
             var repos = RepositoryFactory.GetInstance<Contact, string>("sharpRepository2", null);
@@ -59,7 +59,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadConfigurationRepositoryBySectionAndRepositoryName()
         {
             var repos = RepositoryFactory.GetInstance<Contact, string>("sharpRepository2", "inMem");
@@ -70,7 +70,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadRepositoryDefaultStrategyAndOverrideNone()
         {
             var repos = RepositoryFactory.GetInstance<Contact, string>();
@@ -88,7 +88,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadInMemoryRepositoryFromConfigurationObject()
         {
             var config = new SharpRepositoryConfiguration();
@@ -107,7 +107,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadEfRepositoryFromConfigurationObject()
         {
             var config = new SharpRepositoryConfiguration();
@@ -125,7 +125,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void LoadEfRepositoryAndCachingFromConfigurationObject()
         {
             var config = new SharpRepositoryConfiguration();
@@ -152,7 +152,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TestFactoryOverloadMethod()
         {
             var repos = RepositoryFactory.GetInstance(typeof (Contact), typeof (string));
@@ -163,7 +163,7 @@ namespace SharpRepository.Tests.Configuration
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TestFactoryOverloadMethodForCompoundKey()
         {
             var repos = RepositoryFactory.GetInstance(typeof (Contact), typeof (string), typeof(string));

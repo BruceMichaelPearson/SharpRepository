@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Traits;
 using SharpRepository.Tests.TestObjects;
@@ -8,10 +8,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Traits
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ICanDeleteTraitTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void ICanDelete_Exposes_Delete_Entity()
         {
             var repo = new ContactRepository();
@@ -20,7 +20,7 @@ namespace SharpRepository.Tests.Traits
             repo.Delete(contact);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ICanDelete_Exposes_Delete_Multiple_Entities()
         {
             var repo = new ContactRepository();
@@ -30,7 +30,7 @@ namespace SharpRepository.Tests.Traits
             repo.Delete(new List<Contact> { contact, contact });
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ICanDelete_Exposes_Delete_By_Id()
         {
             var repo = new ContactRepository();

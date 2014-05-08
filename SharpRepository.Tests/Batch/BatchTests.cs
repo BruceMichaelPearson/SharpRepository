@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Transactions;
 using SharpRepository.Tests.TestObjects;
@@ -9,10 +9,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Batch
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class BatchTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Batch_Default_Should_Contain_No_Actions()
         {
             var repository = new InMemoryRepository<Contact, Int32>();
@@ -23,7 +23,7 @@ namespace SharpRepository.Tests.Batch
             }
         }
         
-        [Test]
+        [Test][TestMethod]
         public void Batch_Commit_Should_Reset_Actions()
         {
             var repository = new InMemoryRepository<Contact, Int32>();
@@ -36,7 +36,7 @@ namespace SharpRepository.Tests.Batch
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Batch_Add_Should_Queue_Add_Action()
         {
             var repository = new InMemoryRepository<Contact, Int32>();
@@ -50,7 +50,7 @@ namespace SharpRepository.Tests.Batch
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Batch_Update_Should_Queue_Update_Action()
         {
             var repository = new InMemoryRepository<Contact, Int32>();
@@ -64,7 +64,7 @@ namespace SharpRepository.Tests.Batch
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Batch_Update_Should_Queue_Delete_Action()
         {
             var repository = new InMemoryRepository<Contact, Int32>();
@@ -78,7 +78,7 @@ namespace SharpRepository.Tests.Batch
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Batch_Rollback_Should_Reset_Actions()
         {
             var repository = new InMemoryRepository<Contact, Int32>();

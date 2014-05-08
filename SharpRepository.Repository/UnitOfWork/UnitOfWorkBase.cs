@@ -9,9 +9,8 @@ namespace SharpRepository.Repository.UnitOfWork
     public abstract class UnitOfWorkBase : IUnitOfWork
     {
         protected RepositoryDictionary RepositoryDictionary = new RepositoryDictionary();
-        public abstract void AddRepository<T>() where T : class, new();
 
-        public void Add<T>(T entity) where T : class
+        public void Add<T>(T entity) where T : class, new()
         {
             object repo;
             if (!RepositoryDictionary.TryGetValue(typeof(T), out repo))
@@ -20,5 +19,7 @@ namespace SharpRepository.Repository.UnitOfWork
             }
             ((IRepository<T>)repo).Add(entity);
         }
+
+        public abstract void AddRepository<T>() where T : class, new();
     }
 }

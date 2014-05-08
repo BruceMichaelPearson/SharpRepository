@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Caching;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Repository.Specifications;
@@ -9,12 +9,12 @@ using Should;
 
 namespace SharpRepository.Tests.Caching
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class QueryManagerTests : TestBase
     {
         protected QueryManager<Contact, int> QueryManager;
 
-        [SetUp]
+        [SetUp][TestInitialize]
         public void Setup()
         {
             // need to clear out the InMemory cache before each test is run so that each is independent and won't effect the next one
@@ -37,14 +37,14 @@ namespace SharpRepository.Tests.Caching
             //Repository = null;
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGet_Should_Not_Use_Cache()
         {
             QueryManager.ExecuteGet(FakeGet, 1);
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGet_Should_Use_Cache_After_First_Call()
         {
             // first time no cache yet
@@ -56,7 +56,7 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeTrue();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGet_Cache_Disabled_Should_Not_Use_Cache_After_First_Call()
         {
             // first time no cache yet
@@ -69,14 +69,14 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_Should_Not_Use_Cache()
         {
             QueryManager.ExecuteGetAll(FakeGetAll, null, null);
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_Should_Use_Cache_After_First_Call()
         {
             // first time should not find anything
@@ -88,7 +88,7 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeTrue();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_Cache_Disabled_Should_Not_Use_Cache_After_First_Call()
         {
             // first time should not find anything
@@ -101,14 +101,14 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_Should_Not_Use_Cache()
         {
             QueryManager.ExecuteFindAll(FakeGetAll, new Specification<Contact>(c => c.ContactId < 10), null, null);
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_Should_Use_Cache_After_First_Call()
         {
             // first time should not find anything
@@ -120,7 +120,7 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeTrue();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_Cache_Disabled_Should_Not_Use_Cache_After_First_Call()
         {
             // first time should not find anything
@@ -133,14 +133,14 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFind_Should_Not_Use_Cache()
         {
             QueryManager.ExecuteFind(FakeGet, new Specification<Contact>(c => c.ContactId < 10), null, null);
             QueryManager.CacheUsed.ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFind_Should_Use_Cache_After_First_Call()
         {
             // first time should not find anything
@@ -152,7 +152,7 @@ namespace SharpRepository.Tests.Caching
             QueryManager.CacheUsed.ShouldBeTrue();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFind_Cache_Disabled_Should_Not_Use_Cache_After_First_Call()
         {
             // first time should not find anything

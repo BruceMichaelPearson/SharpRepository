@@ -1,21 +1,21 @@
 ﻿using System.Reflection;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using Should;
 
 namespace SharpRepository.Tests.PrimaryKey
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class RepositoryPrimaryKeyAttributeTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void No_Primary_Key_Should_Return_Null()
         {
             var repos = new TestRepository<NoPrimaryKeyObject, int>();
             repos.TestGetPrimaryKeyPropertyInfo().ShouldBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Id_Primary_Key_Should_Return_Id_Property()
         {
             var repos = new TestRepository<IdPrimaryKeyObject, int>();
@@ -25,7 +25,7 @@ namespace SharpRepository.Tests.PrimaryKey
             propInfo.Name.ShouldEqual("Id");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Id_Primary_Key_With_Wrong_Type_Should_Return_Null()
         {
             var repos = new TestRepository<IdPrimaryKeyObject, string>();
@@ -34,7 +34,7 @@ namespace SharpRepository.Tests.PrimaryKey
             propInfo.ShouldBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ClassId_Primary_Key_Should_Return_Id_Property()
         {
             var repos = new TestRepository<ClassNameIdPrimaryKeyObject, int>();
@@ -44,7 +44,7 @@ namespace SharpRepository.Tests.PrimaryKey
             propInfo.Name.ShouldEqual("ClassNameIdPrimaryKeyObjectId");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ClassId_Primary_Key_With_Wrong_Type_Should_Return_Null()
         {
             var repos = new TestRepository<ClassNameIdPrimaryKeyObject, string>();
@@ -53,7 +53,7 @@ namespace SharpRepository.Tests.PrimaryKey
             propInfo.ShouldBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Attribute_Primary_Key_Should_Return_Id_Property()
         {
             var repos = new TestRepository<UseAttributePrimaryKeyObject, int>();
@@ -63,7 +63,7 @@ namespace SharpRepository.Tests.PrimaryKey
             propInfo.Name.ShouldEqual("SomeRandomName");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Attribute_Primary_Key_With_Wrong_Type_Should_Return_Null()
         {
             var repos = new TestRepository<UseAttributePrimaryKeyObject, string>();

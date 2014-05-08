@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Tests.TestObjects.PrimaryKeys;
 using Should;
 
 namespace SharpRepository.Tests.PrimaryKey
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class MongoDbPrimaryKeyTests
     {
-        [Test]
+        [Test][TestMethod]
         public void Should_Return_KeyInt1_Property()
         {
             var repos = new TestMongoDbRepository<ObjectKeys, int>();

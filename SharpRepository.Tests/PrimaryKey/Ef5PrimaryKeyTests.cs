@@ -1,16 +1,16 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Tests.TestObjects.PrimaryKeys;
 using Should;
 
 namespace SharpRepository.Tests.PrimaryKey
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class Ef5PrimaryKeyTests
     {
-        [Test]
+        [Test][TestMethod]
         public void Should_Return_KeyInt2_Property()
         {
             var repos = new TestEfRepository<ObjectKeys, int>(new DbContext("test"));

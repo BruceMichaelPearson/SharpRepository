@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Tests.TestObjects;
 using Should;
@@ -7,10 +7,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Caching
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class TimeoutCachingStrategyTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Second_Get_Call_Should_Get_New_Item_From_Cache()
         {
             var repository = new InMemoryRepository<Contact, int>(new TimeoutCachingStrategy<Contact, int>(10) { CachePrefix = "#RepoTimeoutCache"});
@@ -26,7 +26,7 @@ namespace SharpRepository.Tests.Caching
             item2.Name.ShouldEqual("Test User EDITED");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Cache_Should_Timeout()
         {
             var repository = new InMemoryRepository<Contact, int>(new TimeoutCachingStrategy<Contact, int>(2) { CachePrefix = "#RepoTimeoutCache" });

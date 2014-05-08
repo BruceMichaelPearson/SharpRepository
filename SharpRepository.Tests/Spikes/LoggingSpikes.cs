@@ -1,13 +1,13 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Tests.TestObjects;
 using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class LoggingSpikes : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Logging_Via_Aspects()
         {
             var repository = new InMemoryRepository<Contact, int>();

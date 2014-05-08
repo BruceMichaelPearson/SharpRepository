@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Runtime.Caching;
 using SharpRepository.InMemoryRepository;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Tests.TestObjects;
@@ -9,10 +9,10 @@ using Should;
 
 namespace SharpRepository.Tests.Caching
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class InMemoryCachingTests : TestBase
     {
-        [SetUp]
+        [SetUp][TestInitialize]
         public void Setup()
         {
             // need to clear out the InMemory cache before each test is run so that each is independent and won't effect the next one
@@ -29,7 +29,7 @@ namespace SharpRepository.Tests.Caching
 
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_With_Selector_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -46,7 +46,7 @@ namespace SharpRepository.Tests.Caching
             items.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -63,7 +63,7 @@ namespace SharpRepository.Tests.Caching
             items.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_With_Selector_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -80,7 +80,7 @@ namespace SharpRepository.Tests.Caching
             items.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -97,7 +97,7 @@ namespace SharpRepository.Tests.Caching
             items.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFind_With_Selector_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -114,7 +114,7 @@ namespace SharpRepository.Tests.Caching
             item.ShouldNotBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFind_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -131,7 +131,7 @@ namespace SharpRepository.Tests.Caching
             item.ShouldNotBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGet_With_Selector_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -144,7 +144,7 @@ namespace SharpRepository.Tests.Caching
             item.ShouldNotBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGet_Should_Use_Cache_After_First_Call()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -157,7 +157,7 @@ namespace SharpRepository.Tests.Caching
             item.ShouldNotBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteFindAll_With_Paging_Should_Save_TotalItems_In_Cache()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());
@@ -183,7 +183,7 @@ namespace SharpRepository.Tests.Caching
             pagingOptions.TotalItems.ShouldEqual(3);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ExecuteGetAll_With_Paging_Should_Save_TotalItems_In_Cache()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());

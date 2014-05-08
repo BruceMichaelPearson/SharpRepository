@@ -104,6 +104,7 @@
     <Compile Include="ICrudRepository.cs" />
     <Compile Include="IRepositoryAggregates.cs" />
     <Compile Include="IDisabledCache.cs" />
+    <Compile Include="ISaveStrategyClient.cs" />
     <Compile Include="Linq\LinqHelpers.cs" />
     <Compile Include="Queries\IPagingOptions.cs" />
     <Compile Include="Caching\Cache.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Queries\CompoundKeyQueryManager.cs" />
     <Compile Include="RepositoryFactory.cs" />
     <Compile Include="RepositoryBase.BatchItem.cs" />
+    <Compile Include="SaveStrategy.cs" />
     <Compile Include="Specifications\AndAlsoSpecification.cs" />
     <Compile Include="Specifications\OrElseSpecification.cs" />
     <Compile Include="Traits\ICanBatch.cs" />
@@ -172,7 +174,7 @@
     <Compile Include="Transactions\IBatchItem.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\RepositoryDictionary.cs" />
-    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

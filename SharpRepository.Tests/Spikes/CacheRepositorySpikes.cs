@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.CacheRepository;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Caching;
@@ -12,12 +12,12 @@ using Should;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     class CacheRepositorySpikes
     {
         private IRepository<TempTestObject, int> _repository;
 
-        [SetUp]
+        [SetUp][TestInitialize]
         public void Initialize()
         {
             var sharpRepositoryConfiguration = new SharpRepositoryConfiguration();
@@ -34,7 +34,7 @@ namespace SharpRepository.Tests.Spikes
             _repository.Delete(x => true);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Add_Multiple_Should_Work()
         {
             var list = new List<TempTestObject>()
@@ -48,7 +48,7 @@ namespace SharpRepository.Tests.Spikes
             _repository.GetAll().Count().ShouldEqual(3);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Add_Multiple_Should_Work2()
         {
             var list = new List<TempTestObject>()

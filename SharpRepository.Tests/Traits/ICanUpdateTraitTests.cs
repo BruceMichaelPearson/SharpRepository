@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Traits;
 using SharpRepository.Tests.TestObjects;
@@ -10,7 +10,7 @@ namespace SharpRepository.Tests.Traits
     [TestFixture]
     public class ICanUpdateTraitTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void ICanUpdate_Exposes_Update_Entity()
         {
             var repo = new ContactRepository();
@@ -22,7 +22,7 @@ namespace SharpRepository.Tests.Traits
             repo.Update(contact);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ICanUpdate_Exposes_Update_Multiple_Entities()
         {
             var repo = new ContactRepository();

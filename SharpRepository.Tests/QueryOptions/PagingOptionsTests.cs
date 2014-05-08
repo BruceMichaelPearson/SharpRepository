@@ -1,30 +1,30 @@
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Tests.TestObjects;
 using Should;
 
 namespace SharpRepository.Tests.QueryOptions
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class PagingOptionsTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_PageNumber_Will_Be_Set_In_Constructor()
         {
             new PagingOptions<Contact>(1, 10, "Name").PageNumber.ShouldEqual(1);
             new PagingOptions<Contact, string>(1, 10, m => m.Name).PageNumber.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_PageSize_Will_Be_Set_In_Constructor()
         {
             new PagingOptions<Contact>(1, 10, "Name").PageSize.ShouldEqual(10);
             new PagingOptions<Contact, string>(1, 10, m => m.Name).PageSize.ShouldEqual(10);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_Apply_Will_Set_TotalItems()
         {
             var contacts = new List<Contact>();
@@ -44,7 +44,7 @@ namespace SharpRepository.Tests.QueryOptions
             qo2.TotalItems.ShouldEqual(5);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_Apply_Return_Requested_Page()
         {
             var contacts = new List<Contact>();
@@ -67,7 +67,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 3");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_Apply_Will_Set_TotalItems_With_Multiple_Sort()
         {
             var contacts = new List<Contact>();
@@ -89,7 +89,7 @@ namespace SharpRepository.Tests.QueryOptions
             qo2.TotalItems.ShouldEqual(5);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void PagingOptions_Apply_Return_Requested_Page_With_Multiple_Sort()
         {
             var contacts = new List<Contact>();

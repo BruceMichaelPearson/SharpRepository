@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Repository.Specifications;
@@ -10,12 +10,12 @@ using Should;
 
 namespace SharpRepository.Tests.Caching
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class StandardCachingStrategyTests : TestBase
     {
         protected ICachingStrategy<Contact, int> CachingStrategy;
             
-        [SetUp]
+        [SetUp][TestInitialize]
         public void Setup()
         {
             // need to clear out the InMemory cache before each test is run so that each is independent and won't effect the next one
@@ -34,7 +34,7 @@ namespace SharpRepository.Tests.Caching
 
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryGetResult_First_Call_Should_Return_False()
         {
             Contact result;
@@ -42,7 +42,7 @@ namespace SharpRepository.Tests.Caching
             result.ShouldEqual(null);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveGetResult_Should_Set_Cache()
         {
             Contact result;
@@ -55,7 +55,7 @@ namespace SharpRepository.Tests.Caching
             result.Name.ShouldEqual(contact.Name);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveGetResult_With_WriteThrough_Disabled_Should_Not_Set_Cache()
         {
             ((StandardCachingStrategy<Contact, int>)CachingStrategy).WriteThroughCachingEnabled = false;
@@ -67,7 +67,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryGetResult(1, out result).ShouldEqual(false);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryGetAllResult_First_Call_Should_Return_False()
         {
             IEnumerable<Contact> result;
@@ -75,7 +75,7 @@ namespace SharpRepository.Tests.Caching
             result.ShouldEqual(null);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveGetAllResult_Should_Set_Cache()
         {
             IEnumerable<Contact> result;
@@ -87,7 +87,7 @@ namespace SharpRepository.Tests.Caching
             result.Count().ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveGetAllResult_With_Generational_Disabled_Should_Not_Set_Cache()
         {
             ((StandardCachingStrategy<Contact, int>)CachingStrategy).GenerationalCachingEnabled = false;
@@ -99,7 +99,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryGetAllResult(null, null, out result).ShouldEqual(false);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryGetAllResult_With_Different_QueryOptions_Should_Return_False()
         {
             IEnumerable<Contact> result;
@@ -109,7 +109,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryGetAllResult(null, null, out result).ShouldEqual(false);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryGetAllResult_With_Same_QueryOptions_Should_Return_True()
         {
             IEnumerable<Contact> result;
@@ -122,7 +122,7 @@ namespace SharpRepository.Tests.Caching
             result.Count().ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindAllResult_First_Call_Should_Return_False()
         {
             IEnumerable<Contact> result;
@@ -133,7 +133,7 @@ namespace SharpRepository.Tests.Caching
             result.ShouldEqual(null);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveFindAllResult_Should_Set_Cache()
         {
             IEnumerable<Contact> result;
@@ -151,7 +151,7 @@ namespace SharpRepository.Tests.Caching
             result.Count().ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindAllResult_With_Different_QueryOptions_Should_Return_False()
         {
             IEnumerable<Contact> result;
@@ -167,7 +167,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryFindAllResult(specification, new SortingOptions<Contact>("Name", true), null, out result).ShouldEqual(false);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindAllResult_With_Same_QueryOptions_Should_Return_True()
         {
             IEnumerable<Contact> result;
@@ -181,7 +181,7 @@ namespace SharpRepository.Tests.Caching
             result.Count().ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindResult_First_Call_Should_Return_False()
         {
             Contact result;
@@ -192,7 +192,7 @@ namespace SharpRepository.Tests.Caching
             result.ShouldEqual(null);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SaveFindResult_Should_Set_Cache()
         {
             Contact result;
@@ -208,7 +208,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryFindResult(specification, queryOptions, null, out result).ShouldEqual(true);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindResult_With_Different_QueryOptions_Should_Return_False()
         {
             Contact result;
@@ -224,7 +224,7 @@ namespace SharpRepository.Tests.Caching
             CachingStrategy.TryFindResult(specification, new SortingOptions<Contact>("Name", true), null, out result).ShouldEqual(false);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void TryFindResult_With_Same_QueryOptions_Should_Return_True()
         {
             Contact result;

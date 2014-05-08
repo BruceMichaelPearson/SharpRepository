@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.FetchStrategies;
 using SharpRepository.Repository.Specifications;
 using SharpRepository.Tests.TestObjects;
@@ -6,17 +6,17 @@ using Should;
 
 namespace SharpRepository.Tests.Specifications
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class SpecificationTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Specification_Will_Default_To_GenericFetchStrategy()
         {
             var spec = new Specification<Contact>(p => p.ContactId == 1);
             spec.FetchStrategy.ShouldBeType<GenericFetchStrategy<Contact>>();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Specification_May_Be_Chained_By_And()
         {
             var spec = new Specification<Contact>(p => p.ContactId == 1)
@@ -32,7 +32,7 @@ namespace SharpRepository.Tests.Specifications
             spec.IsSatisfiedBy(contact).ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Specification_May_Be_Chained_By_Or()
         {
             var spec = new Specification<Contact>(p => p.ContactId == 1)
@@ -51,7 +51,7 @@ namespace SharpRepository.Tests.Specifications
             spec.IsSatisfiedBy(contact).ShouldBeFalse();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Specification_Predicate_May_Be_Updated_In_Constructor()
         {
             var spec = new ContactByNameMatchSpec("tes");

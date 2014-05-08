@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Tests.TestObjects;
 using SharpRepository.InMemoryRepository;
@@ -20,7 +20,7 @@ namespace SharpRepository.Tests.Spikes
     /// and run just fine assuming the Delete call was never referenced. If referenced, the code won't build due to 
     /// an Ambiguous Invocation compilation check.
     /// </summary>
-    [TestFixture]
+    [TestFixture][TestClass]
     public class DeleteByKeyConstaintSpike : TestBase
     {
         //protected IRepository<Int32, Int32> Repository; // Can't be done because of T class constraint.
@@ -28,7 +28,7 @@ namespace SharpRepository.Tests.Spikes
         //protected IRepository<string, string> Repository; // Okay...
         protected IRepository<Contact, int> Repository;
 
-        [SetUp]
+        [SetUp][TestInitialize]
         public void Setup()
         {
             //Repository = new InMemoryRepository<string, Int32>(); // Can't be done because of T new() constaint
@@ -43,7 +43,7 @@ namespace SharpRepository.Tests.Spikes
             Repository = null;
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Delete_Should_Remove_Item()
         {
             //var contact = new Contact { Name = "Test User" };
@@ -57,7 +57,7 @@ namespace SharpRepository.Tests.Spikes
             //result.ShouldBeNull();
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Delete_Should_Remove_Item_By_Key()
         {
             //var contact = new Contact { Name = "Test User" };

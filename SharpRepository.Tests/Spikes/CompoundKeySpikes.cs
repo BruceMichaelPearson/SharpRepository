@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.InMemoryRepository;
 using SharpRepository.Tests.TestObjects;
 using Should;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class CompoundKeySpikes
     {
-        [Test]
+        [Test][TestMethod]
         public void CompoundKeyRepository_Should_Work()
         {
             var repository = new InMemoryRepository<CompoundKeyItemInts, int, int>();
@@ -28,7 +28,7 @@ namespace SharpRepository.Tests.Spikes
             repository.FindAll(x => x.SomeId == 1).Count().ShouldEqual(3);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void CompoundKeyRepositoryNoGenerics_Should_Work()
         {
             var repository = new InMemoryCompoundKeyRepository<CompoundKeyItemInts>();

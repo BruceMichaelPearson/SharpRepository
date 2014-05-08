@@ -13,7 +13,7 @@ using SharpRepository.Repository.Transactions;
 
 namespace SharpRepository.Repository
 {
-    public abstract partial class RepositoryBase<T, TKey> : IRepository<T, TKey> where T : class
+    public abstract partial class RepositoryBase<T, TKey> : IRepository<T, TKey>, ISaveStrategyClient where T : class
     {
         protected RepositoryBase(ICachingStrategy<T, TKey> cachingStrategy = null)
         {
@@ -53,9 +53,9 @@ namespace SharpRepository.Repository
 
         public Type EntityType
         {
-            get { return typeof (T); }
+            get { return typeof(T); }
         }
-        
+
         public Type KeyType
         {
             get { return typeof(TKey); }
@@ -67,7 +67,7 @@ namespace SharpRepository.Repository
         {
             get { return _typeName; }
         }
-        
+
         public bool CacheUsed
         {
             get { return QueryManager.CacheUsed; }
@@ -91,21 +91,21 @@ namespace SharpRepository.Repository
         {
             CachingStrategy.ClearAll();
         }
-      
+
         private bool BatchMode { get; set; }
 
-        public ICachingStrategy<T, TKey> CachingStrategy 
+        public ICachingStrategy<T, TKey> CachingStrategy
         {
-            get { return _cachingStrategy; } 
+            get { return _cachingStrategy; }
             set
             {
                 _cachingStrategy = value ?? new NoCachingStrategy<T, TKey>();
-				QueryManager = new QueryManager<T, TKey>(_cachingStrategy)
-				               {
-					               CacheEnabled = !(_cachingStrategy is NoCachingStrategy<T, TKey>)
-				               };
+                QueryManager = new QueryManager<T, TKey>(_cachingStrategy)
+                               {
+                                   CacheEnabled = !(_cachingStrategy is NoCachingStrategy<T, TKey>)
+                               };
             }
-        } 
+        }
 
         public bool CachingEnabled
         {
@@ -248,7 +248,7 @@ namespace SharpRepository.Repository
                 // return the entity with the selector applied to it
                 var selectedResult = result == null
                     ? default(TResult)
-                    : new[] {result}.AsQueryable().Select(selector).First();
+                    : new[] { result }.AsQueryable().Select(selector).First();
 
                 context.Result = selectedResult;
                 RunAspect(attribute => attribute.OnGetExecuted(context));
@@ -289,7 +289,7 @@ namespace SharpRepository.Repository
 
         public virtual IDictionary<TKey, T> GetManyAsDictionary(IEnumerable<TKey> keys)
         {
-            return  GetMany(keys).ToDictionary(GetPrimaryKey);
+            return GetMany(keys).ToDictionary(GetPrimaryKey);
         }
 
         public bool Exists(TKey key)
@@ -471,14 +471,14 @@ namespace SharpRepository.Repository
 
                 var item = QueryManager.ExecuteFind(
                     () =>
-	                    {
-                            var result = FindQuery(context.Specification, context.QueryOptions);
-	                        if (result == null)
-	                            return default(TResult);
+                    {
+                        var result = FindQuery(context.Specification, context.QueryOptions);
+                        if (result == null)
+                            return default(TResult);
 
-	                        var results = new[] { result };
-                            return results.AsQueryable().Select(context.Selector).First();
-	                    },
+                        var results = new[] { result };
+                        return results.AsQueryable().Select(context.Selector).First();
+                    },
 
                     context.Specification,
                     context.Selector,
@@ -505,7 +505,7 @@ namespace SharpRepository.Repository
 
         public bool TryFind(ISpecification<T> criteria, out T entity)
         {
-            return TryFind(criteria, ( IQueryOptions<T>)null, out entity);
+            return TryFind(criteria, (IQueryOptions<T>)null, out entity);
         }
 
         public bool TryFind(ISpecification<T> criteria, IQueryOptions<T> queryOptions, out T entity)
@@ -1136,7 +1136,7 @@ namespace SharpRepository.Repository
         {
             return GroupLongCount(predicate == null ? null : new Specification<T>(predicate), selector);
         }
-        
+
 
         private bool RunAspect(Func<RepositoryActionBaseAttribute, bool> action)
         {
@@ -1183,15 +1183,15 @@ namespace SharpRepository.Repository
 
             Save();
 
-	        NotifyQueryManagerOfAddedEntity(entity);
+            NotifyQueryManagerOfAddedEntity(entity);
         }
 
-	    private void NotifyQueryManagerOfAddedEntity(T entity)
-	    {
-			TKey key;
-			if (GetPrimaryKey(entity, out key))
-				QueryManager.OnItemAdded(key, entity);
-	    }
+        private void NotifyQueryManagerOfAddedEntity(T entity)
+        {
+            TKey key;
+            if (GetPrimaryKey(entity, out key))
+                QueryManager.OnItemAdded(key, entity);
+        }
 
         public void Add(IEnumerable<T> entities)
         {
@@ -1243,15 +1243,15 @@ namespace SharpRepository.Repository
 
             Save();
 
-	        NotifyQueryManagerOfDeletedEntity(entity);
+            NotifyQueryManagerOfDeletedEntity(entity);
         }
 
-		private void NotifyQueryManagerOfDeletedEntity(T entity)
-		{
-			TKey key;
-			if (GetPrimaryKey(entity, out key))
-				QueryManager.OnItemDeleted(key, entity);
-		}
+        private void NotifyQueryManagerOfDeletedEntity(T entity)
+        {
+            TKey key;
+            if (GetPrimaryKey(entity, out key))
+                QueryManager.OnItemDeleted(key, entity);
+        }
 
         public void Delete(IEnumerable<T> entities)
         {
@@ -1323,28 +1323,28 @@ namespace SharpRepository.Repository
         }
 
         // used from the Update method above and the Save below for the batch save
-	    private void ProcessUpdate(T entity, bool batchMode)
-	    {
+        private void ProcessUpdate(T entity, bool batchMode)
+        {
             if (!RunAspect(attribute => attribute.OnUpdateExecuting(entity, _repositoryActionContext)))
                 return;
 
-		    UpdateItem(entity);
+            UpdateItem(entity);
 
             RunAspect(attribute => attribute.OnUpdateExecuted(entity, _repositoryActionContext));
 
-		    if (batchMode) return;
+            if (batchMode) return;
 
-		    Save();
+            Save();
 
-		    NotifyQueryManagerOfUpdatedEntity(entity);
-	    }
+            NotifyQueryManagerOfUpdatedEntity(entity);
+        }
 
-	    private void NotifyQueryManagerOfUpdatedEntity(T entity)
-	    {
-			TKey key;
-			if (GetPrimaryKey(entity, out key))
-				QueryManager.OnItemUpdated(key, entity);
-	    }
+        private void NotifyQueryManagerOfUpdatedEntity(T entity)
+        {
+            TKey key;
+            if (GetPrimaryKey(entity, out key))
+                QueryManager.OnItemUpdated(key, entity);
+        }
 
         public void Update(IEnumerable<T> entities)
         {
@@ -1370,14 +1370,12 @@ namespace SharpRepository.Repository
         {
             try
             {
-                if (!RunAspect(attribute => attribute.OnSaveExecuting(_repositoryActionContext)))
+                if (!QuerySaveExecuting())
                     return;
 
                 SaveChanges();
-            
-                QueryManager.OnSaveExecuted();
 
-                RunAspect(attribute => attribute.OnSaveExecuted(_repositoryActionContext));
+                BroadcastSaveExecuted();
             }
             catch (Exception ex)
             {
@@ -1385,6 +1383,18 @@ namespace SharpRepository.Repository
                 throw;
             }
         }
+
+        private bool QuerySaveExecuting()
+        {
+            return RunAspect(attribute => attribute.OnSaveExecuting(_repositoryActionContext));
+        }
+
+        private void BroadcastSaveExecuted()
+        {
+            QueryManager.OnSaveExecuted();
+            RunAspect(attribute => attribute.OnSaveExecuted(_repositoryActionContext));
+        }
+
 
         public abstract void Dispose();
 
@@ -1412,7 +1422,7 @@ namespace SharpRepository.Repository
             return default(TKey);
         }
 
-        protected virtual bool GetPrimaryKey(T entity, out TKey key) 
+        protected virtual bool GetPrimaryKey(T entity, out TKey key)
         {
             key = default(TKey);
 
@@ -1422,9 +1432,9 @@ namespace SharpRepository.Repository
             if (propInfo == null)
                 return false;
 
-           key = (TKey) propInfo.GetValue(entity, null);
-           
-           return true;
+            key = (TKey)propInfo.GetValue(entity, null);
+
+            return true;
         }
 
         protected virtual bool SetPrimaryKey(T entity, TKey key)
@@ -1444,10 +1454,10 @@ namespace SharpRepository.Repository
         {
             var propInfo = GetPrimaryKeyPropertyInfo();
 
-            var parameter = Expression.Parameter(typeof (T), "x");
+            var parameter = Expression.Parameter(typeof(T), "x");
             var lambda = Expression.Lambda<Func<T, bool>>(
                     Expression.Equal(
-                        Expression.PropertyOrField(parameter, propInfo.Name), 
+                        Expression.PropertyOrField(parameter, propInfo.Name),
                         Expression.Constant(key)
                     ),
                     parameter
@@ -1510,18 +1520,35 @@ namespace SharpRepository.Repository
             RunAspect(aspect => aspect.OnError(new RepositoryActionContext<T, TKey>(this), ex));
         }
 
-//        private static PropertyInfo GetPropertyCaseInsensitive(IReflect type, string propertyName, Type propertyType)
-//        {
-//            // make the property reflection lookup case insensitive
-//            const BindingFlags bindingFlags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
-//
-//            return type.GetProperty(propertyName, bindingFlags, null, propertyType, new Type[0], new ParameterModifier[0]);
-//        }
+        //        private static PropertyInfo GetPropertyCaseInsensitive(IReflect type, string propertyName, Type propertyType)
+        //        {
+        //            // make the property reflection lookup case insensitive
+        //            const BindingFlags bindingFlags = BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
+        //
+        //            return type.GetProperty(propertyName, bindingFlags, null, propertyType, new Type[0], new ParameterModifier[0]);
+        //        }
 
-//        public abstract IEnumerator<T> GetEnumerator();
-//        IEnumerator IEnumerable.GetEnumerator()
-//        {
-//            return GetEnumerator();
-//        }
+        //        public abstract IEnumerator<T> GetEnumerator();
+        //        IEnumerator IEnumerable.GetEnumerator()
+        //        {
+        //            return GetEnumerator();
+        //        }
+
+        bool ISaveStrategyClient.QuerySaveExecuting()
+        {
+            return QuerySaveExecuting(); ;
+        }
+
+
+        void ISaveStrategyClient.BroadcastSaveExecuted()
+        {
+            BroadcastSaveExecuted();
+        }
+
+
+        void ISaveStrategyClient.SaveChanges()
+        {
+            SaveChanges();
+        }
     }
 }

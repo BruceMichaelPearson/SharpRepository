@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Tests.TestObjects;
 using Should;
@@ -8,10 +8,10 @@ using SharpRepository.InMemoryRepository;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class BatchSpike: TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Repository_Should_BeginBatch()
         {
             var repository = new InMemoryRepository<Contact, Int32>();

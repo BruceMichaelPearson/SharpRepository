@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Tests.TestObjects;
 using Should;
 
 namespace SharpRepository.Tests.QueryOptions
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class SortingOptionsTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortProperty_Asc()
         {
             var contacts = new List<Contact>();
@@ -26,7 +26,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 1");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortProperty_Desc()
         {
             var contacts = new List<Contact>();
@@ -41,7 +41,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 5");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_With_Multiple_Sorting_Properties()
         {
             var contacts = new List<Contact>();
@@ -61,7 +61,7 @@ namespace SharpRepository.Tests.QueryOptions
             contact.ContactTypeId.ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortExpression_Asc()
         {
             var contacts = new List<Contact>();
@@ -76,7 +76,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 1");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortExpression_Desc()
         {
             var contacts = new List<Contact>();
@@ -91,7 +91,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 5");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_With_Multiple_SortExpression_Properties()
         {
             var contacts = new List<Contact>();
@@ -111,7 +111,7 @@ namespace SharpRepository.Tests.QueryOptions
             contact.ContactTypeId.ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortExpression_Multiple_Deep_Asc()
         {
             var contacts = new List<Contact>();
@@ -126,7 +126,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 5");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_SortExpression_Multiple_Deep_Desc()
         {
             var contacts = new List<Contact>();
@@ -141,7 +141,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 1");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_Multiple_Deep_SortProperty_Asc()
         {
             var contacts = new List<Contact>();
@@ -156,7 +156,7 @@ namespace SharpRepository.Tests.QueryOptions
             queryable.First().Name.ShouldEqual("Test User 5");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void SortingOptions_Will_Sort_By_Multiple_Deep_SortProperty_Desc()
         {
             var contacts = new List<Contact>();

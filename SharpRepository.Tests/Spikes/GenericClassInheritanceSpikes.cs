@@ -1,14 +1,14 @@
 ﻿
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Tests.TestObjects;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class GenericClassInheritanceSpikes
     {
-        [Test]
+        [Test][TestMethod]
         public void SomeTest()
         {
             IThing<Contact> thing = new Thing<Contact>();

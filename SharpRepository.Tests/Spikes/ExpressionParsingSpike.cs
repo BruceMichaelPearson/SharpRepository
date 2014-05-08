@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Repository.Specifications;
@@ -7,10 +7,10 @@ using Should;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ExpressionParsingSpike : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void Get_Entity_Partition_Value()
         {
             var contactId = 0;
@@ -25,7 +25,7 @@ namespace SharpRepository.Tests.Spikes
             contactId.ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Constant_On_Right_Should_Not_Match()
         {
             var spec = new Specification<Contact>(contact => contact.Name == "test");
@@ -38,7 +38,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(0);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_GreaterThan_Should_Not_Match()
         {
             var spec = new Specification<Contact>(contact => contact.ContactTypeId > 1);
@@ -51,7 +51,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(0);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_NotEqual_Should_Not_Match()
         {
             var spec = new Specification<Contact>(contact => contact.ContactTypeId != 1);
@@ -64,7 +64,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(0);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Constant_On_Right_Should_Match()
         {
             var spec = new Specification<Contact>(contact => contact.ContactTypeId == 1);
@@ -80,7 +80,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Using_Equals_Method_On_Right_Should_Match()
         {
             var spec = new Specification<Contact>(contact => contact.ContactTypeId.Equals(1));
@@ -96,7 +96,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Using_Equals_Method_On_Right_With_Variable_Should_Match()
         {
             var contactTypeId = 1;
@@ -113,7 +113,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Using_Equals_Method_On_Left_Should_Match()
         {
             var spec = new Specification<Contact>(contact => 1.Equals(contact.ContactTypeId));
@@ -129,7 +129,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Using_Equals_Method_On_Left_With_Variable_Should_Match()
         {
             var contactTypeId = 1;
@@ -146,7 +146,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Constant_On_Left_Should_Match()
         {
             var spec = new Specification<Contact>(contact => 1 == contact.ContactTypeId);
@@ -159,7 +159,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Variable_On_Right_Should_Match()
         {
             var contactId = 1;
@@ -174,7 +174,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Single_Part_Predicate_Variable_On_Left_Should_Match()
         {
             var contactId = 1;
@@ -189,7 +189,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Two_Part_Predicate_Constant_On_Right_Should_Match()
         {
             var spec = new Specification<Contact>(contact => (contact.Name == "test" && contact.ContactTypeId == 1));
@@ -202,7 +202,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Two_Part_Predicate_Constant_On_Left_Should_Match()
         {
             var spec = new Specification<Contact>(contact => (contact.Name == "test" && 1 == contact.ContactTypeId));
@@ -215,7 +215,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Two_Part_Predicate_Variable_On_Right_Should_Match()
         {
             var contactId = 1;
@@ -230,7 +230,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Two_Part_Predicate_Variable_On_Left_Should_Match()
         {
             var contactId = 1;
@@ -245,7 +245,7 @@ namespace SharpRepository.Tests.Spikes
             value.ShouldEqual(1);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void Partition_Column_Used_More_Than_Once_Should_Not_Match()
         {
             var contactId = 1;

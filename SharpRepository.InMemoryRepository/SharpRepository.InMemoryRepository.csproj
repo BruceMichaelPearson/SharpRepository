@@ -42,6 +42,7 @@
     <Compile Include="InMemoryRepository.cs" />
     <Compile Include="InMemoryRepositoryBase.cs" />
     <Compile Include="InMemoryRepositoryConfiguration.cs" />
+    <Compile Include="InMemoryUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

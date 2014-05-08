@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.Repository.FetchStrategies;
 using SharpRepository.Tests.TestObjects;
 using Should;
 
 namespace SharpRepository.Tests.FetchStrategies
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class FetchStrategyTests : TestBase
     {
-        [Test]
+        [Test][TestMethod]
         public void FetchStrategy_May_Include_Multiple_References()
         {
             var strategy = new GenericFetchStrategy<Contact>()
@@ -21,7 +21,7 @@ namespace SharpRepository.Tests.FetchStrategies
             strategy.IncludePaths.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void FetchStrategy_May_Include_String_Property_Names()
         {
             // This is a non-sense example because the Email property is not another table, but it works the exact same
@@ -34,7 +34,7 @@ namespace SharpRepository.Tests.FetchStrategies
             strategy.IncludePaths.Count().ShouldEqual(2);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void FetchStrategy_May_Include_Multiple_Levels()
         {
             // This is a non-sense example because the Email property is not another table, but it works the exact same
@@ -44,7 +44,7 @@ namespace SharpRepository.Tests.FetchStrategies
             strategy.IncludePaths.ShouldContain("EmailAddresses.Email");
         }
 
-        [Test]
+        [Test][TestMethod]
         public void FetchStrategy_May_Include_Multiple_Levels_First_Syntax()
         {
             // This is a non-sense example because the Email property is not another table, but it works the exact same

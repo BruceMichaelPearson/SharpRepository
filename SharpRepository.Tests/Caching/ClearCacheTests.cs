@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.InMemoryRepository;
 using SharpRepository.Repository.Caching;
 using SharpRepository.Tests.TestObjects;
@@ -7,23 +7,24 @@ using Should;
 
 namespace SharpRepository.Tests.Caching
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class ClearCacheTests
     {
-        [Test]
+        [Test][TestMethod]
         public void ClearAllCache_Throws_Exception_WIthout_OutOfBox()
         {
             try
             {
                 Cache.ClearAll();
-                Assert.Fail("No exception was thrown when it should have been");
+                NUnit.Framework.Assert.Fail("No exception was thrown when it should have been");
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail("No exception was thrown when it should have been");
             }
             catch (Exception)
             {
             }
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ClearAllCache_Changes_FullCachePrefix_When_Configured()
         {
             Cache.CachePrefixManager = new SingleServerCachePrefixManager();
@@ -42,7 +43,7 @@ namespace SharpRepository.Tests.Caching
             repos.CachingStrategy.FullCachePrefix.ShouldNotEqual(fullCachePrefix);
         }
 
-        [Test]
+        [Test][TestMethod]
         public void ClearCache_Changes_FullCachePrefix()
         {
             var repos = new InMemoryRepository<Contact>(new StandardCachingStrategy<Contact>());

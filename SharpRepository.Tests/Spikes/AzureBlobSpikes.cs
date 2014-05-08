@@ -1,15 +1,15 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Table;
-using NUnit.Framework;
+using NUnit.Framework;using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpRepository.AzureBlobRepository;
 using Should;
 
 namespace SharpRepository.Tests.Spikes
 {
-    [TestFixture]
+    [TestFixture][TestClass]
     public class AzureBlobSpikes
     {
-        [Test]
+        [Test][TestMethod]
         public void TestAzureBlobGet()
         {
             var guid = Guid.NewGuid();
