@@ -21,5 +21,16 @@ namespace SharpRepository.Repository.UnitOfWork
         }
 
         public abstract void AddRepository<T>() where T : class, new();
+
+
+        public IRepository<T> Repository<T>() where T : class, new()
+        {
+            object repo;
+            if (!RepositoryDictionary.TryGetValue(typeof(T), out repo))
+            {
+                throw new InvalidOperationException("No repository of type " + typeof(T).ToString() + " found.");
+            }
+            return  (IRepository<T>) repo;
+        }
     }
 }
