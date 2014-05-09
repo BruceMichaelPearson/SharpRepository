@@ -10,12 +10,13 @@ using SharpRepository.Repository.Helpers;
 using SharpRepository.Repository.Queries;
 using SharpRepository.Repository.Specifications;
 using SharpRepository.Repository.Transactions;
+using SharpRepository.Repository.SaveStrategy;
 
 namespace SharpRepository.Repository
 {
     public abstract partial class RepositoryBase<T, TKey> : IRepository<T, TKey>, ISaveStrategyClient where T : class
     {
-        protected RepositoryBase(ICachingStrategy<T, TKey> cachingStrategy = null)
+        protected RepositoryBase(ICachingStrategy<T, TKey> cachingStrategy = null, SaveStrategyBase useSaveStrategy = null)
         {
             if (typeof(T) == typeof(TKey))
             {
@@ -36,8 +37,12 @@ namespace SharpRepository.Repository
                 .ToArray();
 
             _repositoryActionContext = new RepositoryActionContext<T, TKey>(this);
+            saveStrat = useSaveStrategy ?? new DefaultSaveStrategy(this);
             RunAspect(aspect => aspect.OnInitialized(_repositoryActionContext));
         }
+
+        // the save strategy to be used
+        protected SaveStrategyBase saveStrat;
 
         // the caching strategy used
         private ICachingStrategy<T, TKey> _cachingStrategy;
@@ -1368,20 +1373,21 @@ namespace SharpRepository.Repository
 
         private void Save()
         {
-            try
-            {
-                if (!QuerySaveExecuting())
-                    return;
+            saveStrat.Save();
+            //try
+            //{
+            //    if (!QuerySaveExecuting())
+            //        return;
 
-                SaveChanges();
+            //    SaveChanges();
 
-                BroadcastSaveExecuted();
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                throw;
-            }
+            //    BroadcastSaveExecuted();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Error(ex);
+            //    throw;
+            //}
         }
 
         private bool QuerySaveExecuting()
@@ -1549,6 +1555,12 @@ namespace SharpRepository.Repository
         void ISaveStrategyClient.SaveChanges()
         {
             SaveChanges();
+        }
+
+
+        public void ErrorHandler(Exception ex)
+        {
+            Error(ex);
         }
     }
 }
